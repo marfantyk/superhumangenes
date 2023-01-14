@@ -1,0 +1,42 @@
+title: Superhumangenes postaggregator
+version: 0.1.0
+name: just_superhuman
+type: postaggregator
+level: variant
+input_level: variant
+description:  Postaggregator for superhumangenes reporter. It deppends on annotators dbsnp, longevitymap, clinvar, omim, ncbigene, pubmed, gnomad. #does it?
+requires:
+- dbsnp
+- omim
+- ncbigene
+- gnomad
+- vcfinfo
+input_columns:
+- vcfinfo__zygosity
+- base__alt_base
+- base__ref_base
+- dbsnp__rsid
+- base__cchange
+- base__so
+- gnomad__af
+- omim__omim_id
+- ncbigene__ncbi_desc
+
+tags:
+- longevity
+output_columns:
+- name: col1
+  title: clo1
+  type: string
+  width: 1
+  filterable: false
+  hidden: true
+  desc: dummy column
+developer:
+  name: "DNA-seq"
+  organization: "DNA-seq"
+  email: "karmazinalex@gmail.com"
+  website: "https://github.com/Marfantyk/superhumangenesreporter"
+  citation: ""
+release_note:
+0.1.0: initial version
