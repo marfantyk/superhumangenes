@@ -58,11 +58,6 @@ class CravatPostAggregator (BasePostAggregator):
         if gene not in self.genes:
             return
 
-        isOk:bool = False
-
-        if not isOk:
-            return
-
         sql:str = """ INSERT INTO superhuman (
             gene,
             rsid,
@@ -87,8 +82,8 @@ class CravatPostAggregator (BasePostAggregator):
         genotype:str = self.get_nucleotides(ref, alt, zygot)
 
         task:tuple[str, ...] = (gene, input_data['dbsnp__rsid'], input_data['base__cchange'],
-                genotype, input_data['base__so'],
-                input_data['gnomad__af'], input_data['clinvar__disease_names'],
+                genotype, input_data['base__so'], "",
+                input_data['gnomad__af'], input_data['clinvar__disease_names'], "",
                 input_data['clinvar__id'], input_data['omim__omim_id'],
                 input_data['ncbigene__ncbi_desc'])
 

@@ -67,6 +67,7 @@ class Reporter(CravatReport):
         # self.data = {"test1":[1,2,3], "test2":["aa", "bbb", "cccc"]}
         data = {}
         data["superhuman"] = self.write_table("superhuman", [], "id", True)
+        print(data)
         self.outfile.write(self.template.render(data=data))
 
 

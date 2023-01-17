@@ -358,11 +358,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			% for row in rows:
+			% for row in data["superhuman"]:
 			<tr>
-				% for data in row:
-				<th>${data}</th>
-				% endfor
+				<th>${row["gene"]}</th>
 			</tr>
 			% endfor
 		</tbody>

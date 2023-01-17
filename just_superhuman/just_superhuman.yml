@@ -11,6 +11,7 @@ requires:
 - ncbigene
 - gnomad
 - vcfinfo
+- clinvar
 input_columns:
 - vcfinfo__zygosity
 - base__alt_base
@@ -21,7 +22,8 @@ input_columns:
 - gnomad__af
 - omim__omim_id
 - ncbigene__ncbi_desc
-
+- clinvar__disease_names
+- clinvar__id
 tags:
 - longevity
 output_columns:
