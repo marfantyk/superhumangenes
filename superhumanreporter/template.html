@@ -354,13 +354,21 @@
     <table class="ui selectable celled teal table table variants">
 		<thead>
 			<tr>
-				<th>ID</th><th>rsID</th><th>Gene</th><th>Ref</th><th>Alt</th><th>Genotype</th><th>Superability</th><th>Adverse effects</th>
+				<th>ID</th><th>Gene</th><th>rsID</th><th>Ref allele</th><th>Alt Allele</th><th>My genotype</th><th>Superability</th><th>Possible adverse effects</th><th>Link</th>
 			</tr>
 		</thead>
 		<tbody>
 			% for row in data["superhuman"]:
 			<tr>
+				<th>${row["id"]}</th>
 				<th>${row["gene"]}</th>
+				<th>${row["rsid"]}</th>
+				<th>${row["ref"]}</th>
+				<th>${row["alt"]}</th>
+				<th>${row["genotype"]}</th>
+				<th>${row["superability"]}</th>
+				<th>${row["adv_effects"]}</th>
+				<th>${row["refer"]}</th>
 			</tr>
 			% endfor
 		</tbody>
