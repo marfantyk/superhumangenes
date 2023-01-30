@@ -81,11 +81,10 @@ class CravatPostAggregator (BasePostAggregator):
         ref:str = input_data['base__ref_base']
         genotype:str = self.get_nucleotides(ref, alt, zygot)
 
-        query:str = 'SELECT * FROM superhuman WHERE' \
-                    'rsid= "{rsid}" AND (zygosity="{zygot}" OR zygosity="both")' \
-                    'AND alt_allele="{alt}"'
+        query:str = 'SELECT * FROM superhuman WHERE rsid = ? AND (zygosity = ? OR zygosity = "both") AND alt_allele = ?'
+        args:tuple[str, ...] = (rsid, zygot, input_data['base__alt_base'])
 
-        self.data_cursor.execute(query)
+        self.data_cursor.execute(query, args)
         rows:tuple = self.data_cursor.fetchall()
 
         if len(rows) == 0:
