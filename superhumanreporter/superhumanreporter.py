@@ -33,7 +33,7 @@ class Reporter(CravatReport):
         self.template = Template(filename=str(Path(__file__).parent / "template.html"))
 
 
-    def write_table(self, name, json_fields = [], sort_field = "", sort_revers = False):
+    def write_table(self, name, sort_field = "", sort_revers = False):
         try:
             sort_sql = ""
             if sort_field != "":
@@ -50,14 +50,7 @@ class Reporter(CravatReport):
             for row in rows:
                 tmp = {}
                 for i, item in enumerate(self.db_cursor.description):
-                    if item[0] in json_fields:
-                        lst = json.loads(row[i])
-                        if len(lst) == 0:
-                            tmp[item[0]] = ""
-                        else:
-                            tmp[item[0]] = lst
-                    else:
-                        tmp[item[0]] = row[i]
+                    tmp[item[0]] = row[i]
                 res.append(tmp)
             return res
         except Exception as e:
@@ -66,7 +59,7 @@ class Reporter(CravatReport):
     def write_data(self):
         # self.data = {"test1":[1,2,3], "test2":["aa", "bbb", "cccc"]}
         data = {}
-        data["superhuman"] = self.write_table("superhuman", [], "id", True)
+        data["superhuman"] = self.write_table("superhuman", "id", True)
         print(data)
         self.outfile.write(self.template.render(data=data))
 

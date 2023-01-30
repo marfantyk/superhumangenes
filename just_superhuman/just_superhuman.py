@@ -3,89 +3,99 @@ from pathlib import Path
 import sqlite3
 
 class CravatPostAggregator (BasePostAggregator):
-    genes:set[str] = set()
-    significance_filter:list[str] = [
-        "Pathogenic",
-        "Pathogenic/Likely pathogenic"
-    ]
-
-    def check(self):
-        return True
-
-    def setup (self):
-        with open(str(Path(__file__).parent)+"/data/genes.txt") as f:
-            self.genes = set(f.read().split("\n"))
-        self.result_path:str = Path(self.output_dir, self.run_name + "_superhuman.sqlite")
-        self.longevity_conn:str = sqlite3.connect(self.result_path)
-        self.longevity_cursor:str = self.longevity_conn.cursor()
-        # Sequence ontology - base__so
-        sql_create:str = """ CREATE TABLE IF NOT EXISTS superhuman (
-            id integer NOT NULL PRIMARY KEY,
-            gene text,
-            rsid text,
-            cdnachange text,
-            genotype text,
-            sequence_ontology text,
-            sift_pred text,
-            alelfreq text,
-            phenotype text,
-            significance text,
-            clinvarid text,
-            omimid text,
-            ncbi text
-            )"""
-        self.longevity_cursor.execute(sql_create)
-        self.longevity_cursor.execute("DELETE FROM superhuman;")
-        self.longevity_conn.commit()
-
-
-    def cleanup(self):
-        if self.longevity_cursor is not None:
-            self.longevity_cursor.close()
-        if self.longevity_conn is not None:
-            self.longevity_conn.commit()
-            self.longevity_conn.close()
-
-        return
+    sql_insert:str = """ INSERT INTO superhuman (
+            gene,
+            rsid,
+            ref,
+            alt,
+            genotype,
+            zygosity,
+            superability,
+            adv_effects,
+            refer,
+            clinvarid,
+            omimid,
+            ncbi
+        ) VALUES (?,?,?,?,?,?,?,?,?,?,?) """
 
     def get_nucleotides(self, ref:str, alt:str, zygocity:str) -> str:
         if zygocity == 'hom':
             return alt+"/"+alt
         return alt+"/"+ref
 
+    def check(self):
+        return True
+
+    def cleanup(self):
+        if self.superhuman_cursor is not None:
+            self.superhuman_cursor.close()
+        if self.superhuman_conn is not None:
+            self.superhuman_conn.commit()
+            self.superhuman_conn.close()
+        return
+
+    def setup (self):
+        self.result_path:str = Path(self.output_dir, self.run_name + "_superhuman.sqlite")
+        self.superhuman_conn:str = sqlite3.connect(self.result_path)
+        self.superhuman_cursor:str = self.superhuman_conn.cursor()
+        sql_create:str = """ CREATE TABLE IF NOT EXISTS superhuman (
+            id integer NOT NULL PRIMARY KEY,
+            gene text,
+            rsid text,
+            ref text,
+            alt text,
+            genotype text,
+            zygosity text,
+            superability text,
+            adv_effects text,
+            refer text,
+            clinvarid text,
+            omimid text,
+            ncbi text
+            )"""
+        self.superhuman_cursor.execute(sql_create)
+        self.superhuman_cursor.execute("DELETE FROM superhuman;")
+        self.superhuman_conn.commit()
+
+
+        cur_path:str = str(Path(__file__).parent)
+        self.data_conn:sqlite3.Connection = sqlite3.connect(Path(cur_path, "data", "superhuman.sqlite"))
+        self.data_cursor:sqlite3.Cursor = self.data_conn.cursor()
+
+
     def annotate(self, input_data):
-        gene:str = input_data['base__hugo']
-        if gene not in self.genes:
+        rsid:str = str(input_data['dbsnp__rsid'])
+        if rsid == '':
             return
 
-        sql:str = """ INSERT INTO superhuman (
-            gene,
-            rsid,
-            cdnachange,
-            genotype,
-            sequence_ontology,
-            sift_pred,
-            alelfreq,
-            phenotype,
-            significance,
-            clinvarid,
-            omimid,
-            ncbi
-        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) """
+        if not rsid.startswith('rs'):
+            rsid = "rs" + rsid
 
         zygot:str = input_data['vcfinfo__zygosity']
         if zygot is None or zygot == "":
             zygot = "het"
+        else:
+            zygot = "hom"
 
         alt:str = input_data['base__alt_base']
         ref:str = input_data['base__ref_base']
         genotype:str = self.get_nucleotides(ref, alt, zygot)
 
-        task:tuple[str, ...] = (gene, input_data['dbsnp__rsid'], input_data['base__cchange'],
-                genotype, input_data['base__so'], "",
-                input_data['gnomad__af'], input_data['clinvar__disease_names'], "",
+        query:str = 'SELECT * FROM superhuman WHERE' \
+                    'rsid= "{rsid}" AND (zygosity="{zygot}" OR zygosity="both")' \
+                    'AND alt_allele="{alt}"'
+
+        self.data_cursor.execute(query)
+        rows:tuple = self.data_cursor.fetchall()
+
+        if len(rows) == 0:
+            return None
+
+        task:tuple[str, ...] = (rows[1], input_data['dbsnp__rsid'], ref,
+                alt, genotype, zygot, rows[8], rows[9], rows[10],
+                input_data['gnomad__af'], input_data['clinvar__disease_names'],
                 input_data['clinvar__id'], input_data['omim__omim_id'],
                 input_data['ncbigene__ncbi_desc'])
 
-        self.longevity_cursor.execute(sql, task)
+        self.superhuman.execute(self.sql_insert, task)
         return {"col1":""}
