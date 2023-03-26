@@ -1,155 +1,118 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<style >
-		*{
-			box-sizing: border-box;
-			scroll-behavior: smooth;
-		}
-		table.ui{
-			border-radius: 0.28571429rem;
-			font-size: 1em;
-			background: white;
-			width: 100%;
-			border-radius: 0.28571429rem;
-			padding: 0.78571429em 0.78571429em;
-			text-align: left;
-			border-collapse: collapse;
-			vertical-align: middle;
-			margin: 1em 0;
-    		border: 1px solid rgba(34,36,38,.15);
-			line-height: 1.4285em;
-		}
-		table.ui th{
-			background: #f9fafb;
-			cursor: auto;
-			text-align: inherit;
-			color: rgba(0,0,0,.87);
-			padding: 0.92857143em 0.78571429em;
-			vertical-align: inherit;
-			font-style: none;
-			font-weight: 700;
-			text-transform: none;
-			border-bottom: 1px solid rgba(34,36,38,.1);
-			border-right: 1px solid rgba(34,36,38,.1);
-		}
-		table.ui.selectable.celled.teal.table tr:hover{
-			background-color: #eef1f5;
-		}
-		table.ui td{
-			padding: 0.92857143em 0.9571429em;
-			border-bottom: 1px solid rgba(34,36,38,.1);
-			border-top: none;
-			border-left: 1px solid rgba(34,36,38,.1);
-			padding: 10px 10px 10px 10px;
-		}
-		table.ui td:first-child{
-			border-left: none;
-		}
-		a {
-			color: #4183c4;
-			text-decoration: none;
-		}
-		a:hover{
-			color: #3b77b3;
-		}
-		body{
-			background-image: linear-gradient(to left bottom, #f9f6f0, #f8f6ec, #f6f6e8, #f2f7e6, #edf8e4, #e5f9e8, #dff9ec, #d9f9f2, #d8f7fb, #def5ff, #e7f1ff, #f0eefd) !important;
-			background-repeat: no-repeat !important;
-			background-attachment: fixed !important;
-			color:rgb(66, 92, 88) !important;
-			font-family: Arial, Helvetica, sans-serif !important;
-		}
-		.intro{
-			max-width: 90%;
-			text-align: center;
-			margin-left: auto;
-			margin-right: auto;
-			line-height: 3;
-			font-size: 24px;
-		}
-		.intro p{
-			color:rgb(84, 85, 110);
-			line-height: 2em;
-			font-size: 1.3em;
-			font-weight: 400;
-		}
-		.intro a{
-			word-wrap: break-word;
-		}
-		.intro ul{
-			padding-left: 0;
-			margin-left: auto !important;
-			margin-right: auto !important;
-			font-weight: 500;
-			margin-top: 40px;
-			list-style-type: none;
-			margin-bottom: 120px;
-		}
-		.li1{
-			font-weight: 400;
-			font-size: 30px;
-		}
-		.board{
-			max-width: 97%;
-			margin-top: 40px;
-			padding-top: 10px;
-			color:rgb(84, 85, 110);
-			padding: 20px;
-		}
-		.board p{
-			line-height: 1.7;
-			font-size: 1.5em;
-			font-weight: 400;
-		}
-		.board .how_to{
-			margin-top: 25px;
-			font-size: 1.7em;
-			font-weight: 300;
-		}
-		.board.prs{
-		}
-		.board.prs .how_to{
-			margin-top: 0px;
-		}
-		.board.variants{
-			word-wrap: break-word;
-			margin-top: 0px;
-		}
-		.board.cancer{
-			padding-top: 0px;
-		}
-		.board.drugs{
-			margin-top: 0px;
-		}
-		.board .how_to{
-			margin-top: 10px;
-			font-size: 2.2em;
-			font-weight: 300;
-		}
-		.board.prs{
-			padding-top: 10px;
-		}
-		.board.prs .how_to{
-			margin-top: 0px;
-		}
-		h2{
-			margin-top: 150px;
-			margin-bottom: 20px;
-		}
-		h2, h1{
-			text-align: center;
-			font-size: 3em !important;
-			font-weight: 300 !important;
-		}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Quicksand:wght@300;400;500;600;700&family=Rajdhani:wght@300;400;500;600;700&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,100;1,200;1,300;1,400;1,500;1,600&display=swap" rel="stylesheet">
+	<title>Longevity report</title>
+<style >
+
+	/*general styles*/
+    *{
+        box-sizing: border-box;
+        scroll-behavior: smooth;
+    }
+	ol{
+        margin-top: 2vw;
+        margin-bottom: 2vw;
+        font-size: 1.1vw;
+    }
+    ol li{
+        margin: 1vw 0;
+    }
+	a {
+        color: #87cec3;
+        text-decoration: none;
+    }
+    a:hover{
+        color: #92e0d3;
+    }
+	body{
+        background: linear-gradient(109.6deg, rgb(36, 45, 57) 11.2%, rgb(16, 37, 60) 51.2%, rgb(0, 0, 0) 98.6%);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        color:rgba(84, 255, 218, 0.63);
+        font-family: 'Rajdhani', sans-serif;
+
+    }
+
+
+	/*table styles*/
+    table.ui{
+        border-radius: 0.28571429rem;
+        background: rgba(255, 255, 255, 0);
+		margin-right:auto;
+		margin-left: auto;
+        border-radius: 10px;
+        padding: 0.78571429em 0.78571429em;
+        text-align: left;
+        border-collapse: collapse;
+        vertical-align: middle;
+		font-family: 'Rajdhani', sans-serif;
+        border: 2px solid rgba(208, 224, 240, 0.205);
+        line-height: 1.4285em;
+    }
+    table.ui th{
+        background: #f9fafb00;
+        color: rgba(254, 246, 255, 0.87);
+        padding: 25px 25px 25px 15px;
+        vertical-align: inherit;
+        font-style: none;
+        font-weight: 600;
+        text-transform: none;
+        border-bottom: 3px solid rgb(72, 83, 97);
+        border-right: 1px solid rgb(37, 56, 75);
+		font-size: 1vw;
+    }
+	table.ui td:first-child{
+		color: rgba(254, 246, 255, 0.87);
+		font-weight: 600;
+	}
+    table.ui.selectable.celled.teal.table tr:hover{
+        background-color: #e43b241c;
+    }
+	table.ui.selectable.celled.teal.table .nothover:hover{
+		background-color: #e43a2400;
+	}
+    table.ui td{
+		font-weight: 500;
+        border-top: none;
+        border-left: 1px solid rgb(37, 56, 75);
+		border-bottom: 2.5px solid rgb(72, 83, 97);
+        padding:   25px 25px 25px 15px;
+		font-size: 1vw;
+    }
+    table.ui td:first-child{
+        border-left: none;
+    }
+    .ui.selectable.celled.teal.table{
+		width: 65%;
+        margin-top: 5vw;
+        margin-bottom: 80px;
+        border-top: 0.25em solid rgb(72, 83, 97);
+    }
+.heading{
+	margin-top: 3vw;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	margin-bottom: 3vw;
+}
+section{
+	margin-right: -2.5vw;
+}
+img{
+	margin-top: 1vw;
+	height: 9vw;
+}
+		/*button style*/
 		div.ui.tiny.circular.compact.positive.button {
 			border-radius: 10em;
-			background-color: #21ba45;
+			background-color: #86caf7;
 			color: #fff;
-			text-shadow: none;
-			background-image: none;
 			padding: 0.58928571em 1.125em 0.58928571em;
 			cursor: pointer;
 			display: inline-block;
@@ -157,135 +120,202 @@
 			outline: 0;
 			border: none;
 			vertical-align: baseline;
-			font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
 			margin: 0 0.25em 0 0;
-			text-transform: none;
 			font-weight: 700;
 			line-height: 1em;
 			font-style: normal;
 			text-align: center;
-			text-decoration: none;
 			}
-			div.ui.tiny.circular.compact.negative.button {
-				border-radius: 10em;
-				background-color: #da1f1f;
-				color: #fff;
-				text-shadow: none;
-				background-image: none;
-				padding: 0.58928571em 1.125em 0.58928571em;
-				cursor: pointer;
-				display: inline-block;
-				min-height: 1em;
-				outline: 0;
-				border: none;
-				vertical-align: baseline;
-				font-family: Lato,'Helvetica Neue',Arial,Helvetica,sans-serif;
-				margin: 0 0.25em 0 0;
-				text-transform: none;
-				font-weight: 700;
-				line-height: 1em;
-				font-style: normal;
-				text-align: center;
-				text-decoration: none;
-			}
-		.acordiv {
-			padding-left: 20px;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			align-content: center;
-			margin-top: 0px;
-			margin-left: auto;
-			margin-right: auto;
-			margin-bottom: 20px;
-
-		}
-		.acordiv h1{
-			font-size: 2.3em !important;
-			font-weight: 300;
+		div.ui.tiny.circular.compact.negative.button {
+			border-radius: 10em;
+			background-color: #a6f069;
+			color: #fff;
+			padding: 0.58928571em 1.125em 0.58928571em;
+			cursor: pointer;
 			display: inline-block;
+			min-height: 1em;
+			outline: 0;
+			border: none;
+			vertical-align: baseline;
+			margin: 0 0.25em 0 0;
+			font-weight: 700;
+			line-height: 1em;
+			font-style: normal;
 			text-align: center;
 		}
 
-		.triangles{
-			margin-left: 30px;
-			display: inline-block;
-			border-left: 7px solid transparent;
-			border-right: 7px solid transparent;
-			border-top: 7px solid #25574e;
-			transition: scale, transform 0.7s;
-			transition-delay: 0.2s;
-			transition-duration: 0.8s;
-		}
-		.triangleActive{
-			margin-left: 26px;
-			display: inline-block;
-			border-left: 11px solid transparent;
-			border-right: 11px solid transparent;
-			border-bottom: 11px solid #25574e;
-			transition: scale 0.7s;
-			transition-delay: 2s;
-			transition-duration: 1s;
-		}
-		.acordiv:hover .triangleActive{
-			transform: scale(1)
 
-		}
-		.acordiv:hover .triangles{
-			transform: scale(1.6)
-			rotate(180deg);
+	/* accordions styles*/
+	.accordion0{
+		position: relative;
+		border:rgb(101, 189, 162)  solid 6px;
+		border-bottom: none;
+		width: 50%;
+		margin-left: 25%;
+		margin-right: 25%;
+		text-align: left;
+		padding-left: 2vw;
+		height: 4vw;
+		font-size: 1.5vw;
+		background-color: rgba(255, 255, 255, 0.5);
+		border-radius: 10px 10px 10px 10px;
+		margin-top: 0.01vw;
+		color: rgb(81, 139, 122);
+		margin-top: 0.7vw;
+		border-bottom: none;
+		cursor: pointer;
+	}
+	.accordion.accordion-heading.active, .accordion:hover{
+		background-color: rgba(255, 255, 255, 0.2);
+	}
+	.accordion.accordion-heading:hover, .accordion.accordion-heading.active:hover{
+		color:rgb(127, 201, 182);
+	}
 
-		}
-		.acordiv:hover {cursor:pointer;background: linear-gradient(0deg, rgba(34,193,195,1) 0%, rgba(179,242,238,1) 0%, rgba(185,226,242,1) 100%);}
-		thead {font-weight: bold; }
-		.ui.celled.teal.table.prs
-		{
-			margin-left:auto;
-			margin-right: auto;
-			color:rgb(66, 92, 88) !important;
-			box-shadow: 0 1px 3px 1px rgba(118, 49, 40, 0.3);
-			border-top: 0.4em solid #56C3BD;
-		}
-		.ui.selectable.celled.teal.table.table.variants{
-			margin-left:auto;
-			margin-right: auto;
-			color:rgb(66, 92, 88) !important;
-			box-shadow: 0 1px 3px 1px rgba(118, 49, 40, 0.3);
-			margin-bottom: 80px !important;
-			border-top: 0.4em solid #7ece34;
-		}
-		.ui.celled.teal.table.table.drugs{
-			margin-left:auto;
-			margin-right: auto;
-			color:rgb(66, 92, 88) !important;
-			box-shadow: 0 1px 3px 1px rgba(118, 49, 40, 0.3);
-			margin-bottom: 80px !important;
 
-			border-top: 0.4em solid #00A75C;
-			}
-		.ui.selectable.celled.teal.table.table.cancer{
-			margin-left:auto;
-			margin-right: auto;
-			color:rgb(66, 92, 88) !important;
-			box-shadow: 0 1px 3px 1px rgba(118, 49, 40, 0.3);
-			margin-bottom: 80px !important;
-			border-top: 0.4em solid #EE3330;
-		}
-		th, td {
-		  padding: 2px;
-		}
-		p {
-			font-size:12pt;
-		}
-		.content{
-			margin-left: auto;
-			margin-right: auto;
-			max-height: 0;
-			overflow: hidden;
-			overflow-x: auto;
-			transition: max-height 0.5s ease-in;
-		}
 
+
+
+			
+
+/*used in each div after description and recommendation buttons*/
+    
+	/*exist in both descr and rec*/
+	.board{
+        width: 50%;
+        margin-top: 40px;
+        padding-top: 10px;
+        color:rgb(84, 85, 110);
+        margin-right:auto;
+        margin-left:auto;
+		font-size: 1.5vw;
+    }
+    .board p{
+        line-height: 1.7;
+        font-weight: 500;
+    }
+
+
+
+	
+
+	
+    h1{
+        text-align: center;
+		font-size: 3vw;
+        font-weight: 500;
+		margin-top: 4vw;
+		font-family: 'Chakra Petch', sans-serif;
+		margin-right: 5vw;
+		margin-left: 5vw;
+    }
+
+
+
+    /* below is style for navigation button */
+    #toTop{
+		z-index: 100;
+        height: 70px;
+        width: 70px;
+        background-color: #308499;
+        border-radius: 50%;
+        position: fixed;
+        right: 2.35%;
+        bottom: 10%;
+        display:none;	
+		box-shadow: 3px 3px 15px rgb(30, 77, 88, 0.7);
+    }
+
+    #toTop:hover{
+        background-color:#56C3BD;
+    }
+    .arrow{
+        position: absolute;
+        bottom: 10%;
+        z-index: 10;
+    }
+    .bodypart{
+        width: 0;
+        height: 0;
+        border-left: 16px solid transparent;
+        border-right: 16px solid transparent;
+        border-bottom: 16px solid white;
+        right: 20px;
+        top:20%;
+    }
+    .line{
+        right: 31px;
+        bottom: 18px;
+        background: white;
+        width: 8px;
+        height: 33px;
+    }
+
+
+	@media only screen and (max-width: 1400px) {
+		.heading{
+			margin-top: 10vw;
+		}
+		h1{
+			font-size: 5.5vw;
+		}
+		img{
+			margin-top: 0vw;
+			height: 17vw;
+		}
+		.board{
+			margin-top: 8vw;
+			font-size: 3vw;
+			width: 80%;
+			margin-bottom: 10vw;
+		}
+		table.ui td, table.ui th{
+		font-size: 2vw;
+		}
+		.ui.table td:last-child{
+			padding: 20px 20px 20px 10px;
+			font-size: 1.5vw;
+		width: 4vw;
+		word-break: break-all;
+		}
+}
+	@media only screen and (max-width: 600px){
+		.heading{
+			flex-direction: column-reverse;
+			align-items: center;
+			margin-top: 20vw;
+		}
+		h1{
+			font-size: 9.5vw;
+		}
+		img{
+			margin-left: 2vw;
+			margin-top: 0vw;
+			height: 40vw;
+			width: 43vw;
+		}
+		.board{
+			margin-top: 8vw;
+			font-size: 5vw;
+			width: 80%;
+			margin-bottom: 20vw;
+		}
+		table.ui td, table.ui th{
+			padding: 5px 5px 5px 3px;
+		font-size: 3vw;
+		}
+		table.ui{
+			margin-left:-7px;
+			line-height: 3vw;
+			margin-bottom: 20vw;
+		}
+		.ui.table td:last-child{
+			padding: 2px 2px 2px 1px;
+			font-size: 1.5vw;
+		width: 4vw;
+		word-break: break-all;
+		}
+	}
 </style>
 
 <script>
@@ -351,35 +381,375 @@
 
 <body>
 <div>
-	<h1>Superhuman Genes</h1>
-	<div style="margin-bottom: 20px;"class="board">
+	<div class="heading">
+		<section><h1>Superhuman Genes</h1></section>
+		<img src="https://psv4.userapi.com/c237231/u671275295/docs/d57/23210587f8ee/superhumanlightreportnologo.png?extra=1cqbLMZ-B1CJmSvcIySPWiRsq5F2kK2BPpwjDi7C87V_cQvrwOMTZJH8RxRnLYI19veDI8EmcQbCxbhOrJ3zwfHA7HwAQGxcB268JdWTQ4sLoYLN_rqV1WA-Pw2IW_5_MrkjSUrTdpBCq6TcqLoqZyMvJ4Y">
+	</div>
+	<div class="board">
 		<p> This is Superhuman genes report. It contains information about </p>
 		<p></p>
-		<p>Blabla
+		<p>Based on the  <a href="https://arep.med.harvard.edu/gmc/protect.html">spreadsheet</a> by George Church
 		</p></div>
-    <table class="ui selectable celled teal table table variants">
+	<table class="ui selectable celled teal table">
 		<thead>
-			<tr>
+			<tr class="nothover">
 				<th>ID</th><th>Gene</th><th>rsID</th><th>Ref allele</th><th>Alt Allele</th><th>My genotype</th><th>Superability</th><th>Possible adverse effects</th><th>Link</th>
 			</tr>
 		</thead>
 		<tbody>
 			% for row in data["superhuman"]:
 			<tr>
-				<th>${row["id"]}</th>
-				<th>${row["gene"]}</th>
-				<th>${row["rsid"]}</th>
-				<th>${row["ref"]}</th>
-				<th>${row["alt"]}</th>
-				<th>${row["genotype"]}</th>
-				<th>${row["superability"]}</th>
-				<th>${row["adv_effects"]}</th>
-				<th>${row["refer"]}</th>
+				<td>${row["id"]}</td>
+				<td>${row["gene"]}</td>
+				<td>${row["rsid"]}</td>
+				<td>${row["ref"]}</td>
+				<td>${row["alt"]}</td>
+				<td>${row["genotype"]}</td>
+				<td>${row["superability"]}</td>
+				<td>${row["adv_effects"]}</td>
+				<td><a href="${row['refer']}">${row["refer"]}</a></td>
 			</tr>
 			% endfor
 		</tbody>
 	</table>
 </div>
+<script>
+const BtnBackToTop = document.querySelector("#toTop")
 
-</body>
-</html>
+window.addEventListener("scroll", scrollFunction);
+
+function scrollFunction() {
+  if (window.pageYOffset > 300) { // Show backToTopButton
+    if(!BtnBackToTop.classList.contains("btnEntrance")) {
+		BtnBackToTop.classList.remove("btnExit");
+		BtnBackToTop.classList.add("btnEntrance");
+		BtnBackToTop.style.display = "block";
+    }
+  }
+  else { // Hide backToTopButton
+    if(BtnBackToTop.classList.contains("btnEntrance")) {
+		BtnBackToTop.classList.remove("btnEntrance");
+		BtnBackToTop.classList.add("btnExit");
+      	setTimeout(function() {
+        BtnBackToTop.style.display = "none";
+      }, 250);
+    }
+  }
+}
+
+
+
+BtnBackToTop.addEventListener("click", backToTop);
+
+function backToTop() {
+	window.scrollTo(0, 0);
+}
+let currentWidth = document.body.clientWidth;
+
+let styles = calculatingStyles(currentWidth);
+
+window.addEventListener("resize", function(event) {
+    currentWidth = document.body.clientWidth;
+	styles = calculatingStyles(currentWidth);
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+	for (i = 0; i < acc.length; i++) {
+		if (acc[i].classList.contains("panel-description")){
+		acc[i].classList.toggle("active");
+		acc[i].style.borderRadius = "10px 10px 0px 0px"
+		var panel = acc[i].nextElementSibling;
+		panel.style.display="block"
+		panel.style.maxHeight = panel.scrollHeight + "px";
+	}
+	}
+})
+
+function calculatingStyles(width){
+
+let listOfStyles = {widthForActive:"", widthForClosed:"", marginForActive:"", marginForClosed:""};
+
+if (width >= 1400){
+	listOfStyles.widthForActive = "85";
+	listOfStyles.widthForClosed = "50";
+	console.log(listOfStyles)
+}else if((width < 1400) && (currentWidth >= 600)){
+		listOfStyles.widthForActive = "98";
+		listOfStyles.widthForClosed = "80";
+} else {
+	listOfStyles.widthForActive = "100";
+	listOfStyles.widthForClosed = "95";
+}
+listOfStyles.marginForActive = (100-listOfStyles.widthForActive)/2 + '%';
+listOfStyles.marginForClosed = (100-listOfStyles.widthForClosed)/2 + '%';
+listOfStyles.widthForActive = listOfStyles.widthForActive + "%";
+listOfStyles.widthForClosed = listOfStyles.widthForClosed + "%";
+
+return listOfStyles
+
+};
+
+
+
+
+
+var acc = document.getElementsByClassName("accordion");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+	if (acc[i].nextElementSibling.classList.contains("panel-description")){
+		acc[i].classList.toggle("active");
+		acc[i].style.borderRadius = "10px 10px 0px 0px"
+		var panel = acc[i].nextElementSibling;
+		panel.style.display="block"
+		panel.style.maxHeight = panel.scrollHeight + "px";
+	}
+  acc[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+	let button = this;
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+		let height = panel.style.maxHeight;
+		let time = parseInt((height.slice(0,-2)))/7;
+		if (time>300){
+			time =200;
+		}
+        panel.style.maxHeight = null;
+	    setTimeout(function() {
+			panel.style.display = "none"
+			button.style.borderRadius = "10px";
+			if (button.classList.contains("accordion-result") || button.classList.contains("accordion-heading")){
+				button.style.width = styles.widthForClosed;
+				button.style.marginRight = styles.marginForClosed;
+				button.style.marginLeft = styles.marginForClosed;
+	}
+      }, time);
+    } else {
+		if (button.classList.contains("accordion-result") || button.classList.contains("accordion-heading")){
+			button.style.width =  styles.widthForActive;
+			button.style.marginRight = styles.marginForActive;
+			button.style.marginLeft = styles.marginForActive;
+			setTimeout(function() {
+			panel.style.display = "block"
+			panel.style.maxHeight = panel.scrollHeight + "px";
+			panel.parentElement.style.maxHeight = Number(panel.parentElement.style.maxHeight.slice(0, -2)) + panel.scrollHeight + "px";
+			button.style.borderRadius = "10px 10px 0px 0px";
+		}, 150);}
+		else{
+			panel.style.display = "block"
+			panel.style.maxHeight = panel.scrollHeight + "px";
+			panel.parentElement.style.maxHeight = Number(panel.parentElement.style.maxHeight.slice(0, -2)) + panel.scrollHeight + "px";
+			button.style.borderRadius = "10px 10px 0px 0px"
+		}
+	}
+  });
+}
+
+
+</script>
+<style>
+
+.btnExit{
+			animation-duration: 0.5s;
+			animation-fill-mode: both;
+			animation-name: btnExit;
+	}
+
+@keyframes btnExit {
+	from {
+				opacity: 1;
+			}
+			to {
+				opacity: 0;
+				transform: scale3d(0.8, 0.8, 0.8);
+			}
+			}
+
+
+.btnEntrance{
+			animation-duration: 0.5s;
+			animation-fill-mode: both;
+			animation-name: btnEntrance;
+		}
+
+		@keyframes btnEntrance {
+			from {
+				opacity: 0;
+				transform: scale3d(0.3, 0.3, 0.3);
+			}
+			to {
+				opacity: 1;
+			}
+			}
+
+</style>
+<script>
+	const BtnBackToTop = document.querySelector("#toTop")
+	
+	window.addEventListener("scroll", scrollFunction);
+	
+	function scrollFunction() {
+	  if (window.pageYOffset > 300) { // Show backToTopButton
+		if(!BtnBackToTop.classList.contains("btnEntrance")) {
+			BtnBackToTop.classList.remove("btnExit");
+			BtnBackToTop.classList.add("btnEntrance");
+			BtnBackToTop.style.display = "block";
+		}
+	  }
+	  else { // Hide backToTopButton
+		if(BtnBackToTop.classList.contains("btnEntrance")) {
+			BtnBackToTop.classList.remove("btnEntrance");
+			BtnBackToTop.classList.add("btnExit");
+			  setTimeout(function() {
+			BtnBackToTop.style.display = "none";
+		  }, 250);
+		}
+	  }
+	}
+	
+	
+	
+	BtnBackToTop.addEventListener("click", backToTop);
+	
+	function backToTop() {
+		window.scrollTo(0, 0);
+	}
+	let currentWidth = document.body.clientWidth;
+	
+	let styles = calculatingStyles(currentWidth);
+	
+	window.addEventListener("resize", function(event) {
+		currentWidth = document.body.clientWidth;
+		styles = calculatingStyles(currentWidth);
+		var acc = document.getElementsByClassName("accordion");
+		var i;
+		for (i = 0; i < acc.length; i++) {
+			if (acc[i].classList.contains("panel-description")){
+			acc[i].classList.toggle("active");
+			acc[i].style.borderRadius = "10px 10px 0px 0px"
+			var panel = acc[i].nextElementSibling;
+			panel.style.display="block"
+			panel.style.maxHeight = panel.scrollHeight + "px";
+		}
+		}
+	})
+	
+	function calculatingStyles(width){
+	
+	let listOfStyles = {widthForActive:"", widthForClosed:"", marginForActive:"", marginForClosed:""};
+	
+	if (width >= 1400){
+		listOfStyles.widthForActive = "85";
+		listOfStyles.widthForClosed = "50";
+		console.log(listOfStyles)
+	}else if((width < 1400) && (currentWidth >= 600)){
+			listOfStyles.widthForActive = "98";
+			listOfStyles.widthForClosed = "80";
+	} else {
+		listOfStyles.widthForActive = "100";
+		listOfStyles.widthForClosed = "95";
+	}
+	listOfStyles.marginForActive = (100-listOfStyles.widthForActive)/2 + '%';
+	listOfStyles.marginForClosed = (100-listOfStyles.widthForClosed)/2 + '%';
+	listOfStyles.widthForActive = listOfStyles.widthForActive + "%";
+	listOfStyles.widthForClosed = listOfStyles.widthForClosed + "%";
+	
+	return listOfStyles
+	
+	};
+	
+	
+	
+	
+	
+	var acc = document.getElementsByClassName("accordion");
+	var i;
+	
+	for (i = 0; i < acc.length; i++) {
+		if (acc[i].nextElementSibling.classList.contains("panel-description")){
+			acc[i].classList.toggle("active");
+			acc[i].style.borderRadius = "10px 10px 0px 0px"
+			var panel = acc[i].nextElementSibling;
+			panel.style.display="block"
+			panel.style.maxHeight = panel.scrollHeight + "px";
+		}
+	  acc[i].addEventListener("click", function() {
+		this.classList.toggle("active");
+		let button = this;
+		var panel = this.nextElementSibling;
+		if (panel.style.maxHeight) {
+			let height = panel.style.maxHeight;
+			let time = parseInt((height.slice(0,-2)))/7;
+			if (time>300){
+				time =200;
+			}
+			panel.style.maxHeight = null;
+			setTimeout(function() {
+				panel.style.display = "none"
+				button.style.borderRadius = "10px";
+				if (button.classList.contains("accordion-result") || button.classList.contains("accordion-heading")){
+					button.style.width = styles.widthForClosed;
+					button.style.marginRight = styles.marginForClosed;
+					button.style.marginLeft = styles.marginForClosed;
+		}
+		  }, time);
+		} else {
+			if (button.classList.contains("accordion-result") || button.classList.contains("accordion-heading")){
+				button.style.width =  styles.widthForActive;
+				button.style.marginRight = styles.marginForActive;
+				button.style.marginLeft = styles.marginForActive;
+				setTimeout(function() {
+				panel.style.display = "block"
+				panel.style.maxHeight = panel.scrollHeight + "px";
+				panel.parentElement.style.maxHeight = Number(panel.parentElement.style.maxHeight.slice(0, -2)) + panel.scrollHeight + "px";
+				button.style.borderRadius = "10px 10px 0px 0px";
+			}, 150);}
+			else{
+				panel.style.display = "block"
+				panel.style.maxHeight = panel.scrollHeight + "px";
+				panel.parentElement.style.maxHeight = Number(panel.parentElement.style.maxHeight.slice(0, -2)) + panel.scrollHeight + "px";
+				button.style.borderRadius = "10px 10px 0px 0px"
+			}
+		}
+	  });
+	}
+	
+	
+	</script>
+	<style>
+	
+	.btnExit{
+				animation-duration: 0.5s;
+				animation-fill-mode: both;
+				animation-name: btnExit;
+		}
+	
+	@keyframes btnExit {
+		from {
+					opacity: 1;
+				}
+				to {
+					opacity: 0;
+					transform: scale3d(0.8, 0.8, 0.8);
+				}
+				}
+	
+	
+	.btnEntrance{
+				animation-duration: 0.5s;
+				animation-fill-mode: both;
+				animation-name: btnEntrance;
+			}
+	
+			@keyframes btnEntrance {
+				from {
+					opacity: 0;
+					transform: scale3d(0.3, 0.3, 0.3);
+				}
+				to {
+					opacity: 1;
+				}
+				}
+	
+	</style>
+	</body>
+	</html>
