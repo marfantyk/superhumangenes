@@ -82,15 +82,15 @@ class CravatPostAggregator (BasePostAggregator):
         query:str = 'SELECT * FROM superhuman WHERE rsid = ? AND (zygosity = ? OR zygosity = "both") AND (alt_allele = ? OR alt_allele IS NULL)'
         args:tuple[str, ...] = (rsid, zygot, input_data['base__alt_base'])
         self.data_cursor.execute(query, args)
-        rows:tuple = self.data_cursor.fetchone()
+        rows:tuple = self.data_cursor.fetchall()
 
         if rows is None:
             return None
+        for row in rows:
+            task:tuple[str, ...] = (row[1], input_data['dbsnp__rsid'], ref,
+                    alt, genotype, zygot, row[8], row[9], row[10],
+                    input_data['clinvar__id'], input_data['omim__omim_id'],
+                    input_data['ncbigene__ncbi_desc'])
 
-        task:tuple[str, ...] = (rows[1], input_data['dbsnp__rsid'], ref,
-                alt, genotype, zygot, rows[8], rows[9], rows[10],
-                input_data['clinvar__id'], input_data['omim__omim_id'],
-                input_data['ncbigene__ncbi_desc'])
-
-        self.superhuman_cursor.execute(self.sql_insert, task)
+            self.superhuman_cursor.execute(self.sql_insert, task)
         return {"col1":""}
