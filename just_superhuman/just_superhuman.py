@@ -16,7 +16,7 @@ class CravatPostAggregator (BasePostAggregator):
             clinvarid,
             omimid,
             ncbi
-        ) VALUES (?,?,?,?,?,?,?,?,?,?,?) """
+        ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?) """
 
     def get_nucleotides(self, ref:str, alt:str, zygocity:str) -> str:
         if zygocity == 'hom':
@@ -35,9 +35,9 @@ class CravatPostAggregator (BasePostAggregator):
         return
 
     def setup (self):
-        self.result_path:str = Path(self.output_dir, self.run_name + "_superhuman.sqlite")
-        self.superhuman_conn:str = sqlite3.connect(self.result_path)
-        self.superhuman_cursor:str = self.superhuman_conn.cursor()
+        self.result_path = Path(self.output_dir, self.run_name + "_superhuman.sqlite")
+        self.superhuman_conn = sqlite3.connect(self.result_path)
+        self.superhuman_cursor = self.superhuman_conn.cursor()
         sql_create:str = """ CREATE TABLE IF NOT EXISTS superhuman (
             id integer NOT NULL PRIMARY KEY,
             gene text,
@@ -73,28 +73,24 @@ class CravatPostAggregator (BasePostAggregator):
 
         zygot:str = input_data['vcfinfo__zygosity']
         if zygot is None or zygot == "":
-            zygot = "het"
-        else:
             zygot = "hom"
 
         alt:str = input_data['base__alt_base']
         ref:str = input_data['base__ref_base']
         genotype:str = self.get_nucleotides(ref, alt, zygot)
 
-        query:str = 'SELECT * FROM superhuman WHERE rsid = ? AND (zygosity = ? OR zygosity = "both") AND alt_allele = ?'
+        query:str = 'SELECT * FROM superhuman WHERE rsid = ? AND (zygosity = ? OR zygosity = "both") AND (alt_allele = ? OR alt_allele IS NULL)'
         args:tuple[str, ...] = (rsid, zygot, input_data['base__alt_base'])
-
         self.data_cursor.execute(query, args)
-        rows:tuple = self.data_cursor.fetchall()
+        rows:tuple = self.data_cursor.fetchone()
 
-        if len(rows) == 0:
+        if rows is None:
             return None
 
         task:tuple[str, ...] = (rows[1], input_data['dbsnp__rsid'], ref,
                 alt, genotype, zygot, rows[8], rows[9], rows[10],
-                input_data['gnomad__af'], input_data['clinvar__disease_names'],
                 input_data['clinvar__id'], input_data['omim__omim_id'],
                 input_data['ncbigene__ncbi_desc'])
 
-        self.superhuman.execute(self.sql_insert, task)
+        self.superhuman_cursor.execute(self.sql_insert, task)
         return {"col1":""}
